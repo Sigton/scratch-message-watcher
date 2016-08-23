@@ -8,6 +8,8 @@ A simple GUI to give live updates on Scratch messages
 import tkinter as tk
 from tkinter import ttk
 
+import json
+
 try:
     import requests
 except ImportError:
@@ -55,6 +57,10 @@ class StartPage(tk.Frame):
         label = ttk.Label(self, text="Start Page", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
 
+        button1 = ttk.Button(self, text="Proceed to page 1",
+                             command=lambda: controller.show_frame(PageOne))
+        button1.pack()
+
 class PageOne(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -64,13 +70,18 @@ class PageOne(tk.Frame):
         label = ttk.Label(self, text="Page One", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
 
+        button1 = ttk.Button(self, text="Back to Start Page",
+                             command=lambda: controller.show_frame(StartPage))
+        button1.pack()
+
+        button2 = ttk.Button(self, text="Get message count", command=get_message_count)
+        button2.pack()
+
 def get_message_count():
 
     r = requests.get("https://api.scratch.mit.edu/proxy/users/Sigton/activity/count")
-    messages = json.loads(r)
-    
-    return messages["count"]
-    
+    message_count = json.loads(str(r.content)[2:-1])
+    print(message_count['msg_count'])
 
 app = MessageWatcherApp()
 app.mainloop()
