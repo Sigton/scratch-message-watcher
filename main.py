@@ -1,3 +1,10 @@
+'''
+SCRATCH MESSAGE WATCHER
+By Sigton
+
+A simple GUI to give live updates on Scratch messages
+'''
+
 import tkinter as tk
 from tkinter import ttk
 
@@ -56,6 +63,14 @@ class PageOne(tk.Frame):
 
         label = ttk.Label(self, text="Page One", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
+
+def get_message_count():
+
+    r = requests.get("https://api.scratch.mit.edu/proxy/users/Sigton/activity/count")
+    messages = json.loads(r)
+    
+    return messages["count"]
+    
 
 app = MessageWatcherApp()
 app.mainloop()
