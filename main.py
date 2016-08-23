@@ -6,6 +6,8 @@ try:
 except ImportError:
     pass
 
+LARGE_FONT = ("Verdana", 12)
+
 class MessageWatcherApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
@@ -22,7 +24,7 @@ class MessageWatcherApp(tk.Tk):
 
         self.frames = {}
 
-        for f in (StartPage):
+        for f in (StartPage, PageOne):
 
             frame = f(container, self)
 
@@ -36,6 +38,24 @@ class MessageWatcherApp(tk.Tk):
 
         frame = self.frames[cont]
         frame.tkraise()
+
+class StartPage(tk.Frame):
+
+    def __init__(self, parent, controller):
+
+        tk.Frame.__init__(self,parent)
+
+        label = ttk.Label(self, text="Start Page", font=LARGE_FONT)
+        label.pack(pady=10,padx=10)
+
+class PageOne(tk.Frame):
+
+    def __init__(self, parent, controller):
+
+        tk.Frame.__init__(self,parent)
+
+        label = ttk.Label(self, text="Page One", font=LARGE_FONT)
+        label.pack(pady=10,padx=10)
 
 app = MessageWatcherApp()
 app.mainloop()
