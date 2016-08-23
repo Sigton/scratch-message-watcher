@@ -77,11 +77,12 @@ class PageOne(tk.Frame):
         button2 = ttk.Button(self, text="Get message count", command=get_message_count)
         button2.pack()
 
-def get_message_count():
+def update():
 
     r = requests.get("https://api.scratch.mit.edu/proxy/users/Sigton/activity/count")
-    message_count = json.loads(str(r.content)[2:-1])
-    print(message_count['msg_count'])
+    d = json.loads(str(r.content)[2:-1])
+    
+    message_count = d['msg_count']
 
 app = MessageWatcherApp()
 app.mainloop()
