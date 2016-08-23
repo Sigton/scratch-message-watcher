@@ -84,5 +84,9 @@ def update():
     
     message_count = d['msg_count']
 
-app = MessageWatcherApp()
-app.mainloop()
+def main():
+    app = MessageWatcherApp()
+    app.mainloop()
+
+if __name__ == '__main__':
+    main()
