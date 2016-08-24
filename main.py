@@ -83,26 +83,26 @@ class StartPage(tk.Frame):
         self.label = ttk.Label(self, text="You you have 0 new messages")
         self.label.pack()
 
-def update():
+    def update(self):
 
-    # This is the main function; it retrieves the message count from the api and converts it from JSON to a Python dict.
+        # This is the main function; it retrieves the message count from the api and converts it from JSON to a Python dict.
 
-    r = requests.get("https://api.scratch.mit.edu/proxy/users/Sigton/activity/count")
-    d = json.loads(str(r.content)[2:-1])
-    
-    message_count = d['msg_count']
+        r = requests.get("https://api.scratch.mit.edu/proxy/users/Sigton/activity/count")
+        d = json.loads(str(r.content)[2:-1])
+        
+        message_count = d['msg_count']
 
-    StartPage.label.config(text="You have %d new messages") % (message_count)
+        self.label.config(text="You have %d new messages") % (message_count)
 
-    time.wait(5)
-    update()
+        time.wait(5)
+        update()
 
 def main():
     
     # Main function
     
     app = MessageWatcherApp()
-    update()
+    StartPage.update()
     app.mainloop()
 
 if __name__ == '__main__':
