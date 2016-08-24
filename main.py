@@ -80,12 +80,8 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self,parent)
 
         # Added a labal and button
-        label = ttk.Label(self, text="Start Page", font=LARGE_FONT)
+        label = ttk.Label(self, text="Welcome to the Scratch Message Watcher", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
-
-        button1 = ttk.Button(self, text="Proceed to page 1",
-                             command=lambda: controller.show_frame(PageOne))
-        button1.pack()
 
 class PageOne(tk.Frame):
 
@@ -103,10 +99,6 @@ class PageOne(tk.Frame):
         # Add a label and a couple of buttons
         label = ttk.Label(self, text="Page One", font=LARGE_FONT)
         label.pack(pady=10,padx=10)
-
-        button1 = ttk.Button(self, text="Back to Start Page",
-                             command=lambda: controller.show_frame(StartPage))
-        button1.pack()
 
 def update():
 
