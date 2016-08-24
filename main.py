@@ -82,6 +82,7 @@ class StartPage(tk.Frame):
         self.title.pack(pady=10,padx=10)
         self.label = ttk.Label(self, text="You have 0 new messages")
         self.label.pack()
+        # Temporary button until I get the automation working
         self.button = ttk.Button(self, text="Refresh",
                                  command= lambda: update(self))
         self.button.pack()
