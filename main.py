@@ -37,6 +37,9 @@ class MessageWatcherApp(tk.Tk):
         # Set the window title
         tk.Tk.wm_title(self, "Scratch Message Watcher")
 
+        # Set window size
+        self.geometry('{}x{}'.format(800,600))
+
         # Create the container
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
@@ -78,7 +81,7 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self,parent)
 
         # Added a label
-        self.title = ttk.Label(self, text="Welcome to the Scratch Message Watcher", font=LARGE_FONT)
+        self.title = ttk.Label(self, text="Retrive Latest Message Count", font=LARGE_FONT)
         self.title.pack(pady=10,padx=10)
         self.label = ttk.Label(self, text="You have 0 new messages")
         self.label.pack()
