@@ -10,7 +10,7 @@ import tkinter as tk
 from tkinter import ttk
 
 # JSON is used to turn the data retrieved from the API into Python data structures
-import json
+import json, time
 
 # Requests is used to get the data in the first place :P
 try:
@@ -107,9 +107,6 @@ class PageOne(tk.Frame):
         button1 = ttk.Button(self, text="Back to Start Page",
                              command=lambda: controller.show_frame(StartPage))
         button1.pack()
-
-        button2 = ttk.Button(self, text="Get message count", command=update)
-        button2.pack()
 
 def update():
 
