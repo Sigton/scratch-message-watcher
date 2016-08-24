@@ -80,9 +80,12 @@ class StartPage(tk.Frame):
         # Added a label
         self.title = ttk.Label(self, text="Welcome to the Scratch Message Watcher", font=LARGE_FONT)
         self.title.pack(pady=10,padx=10)
-        self.label = ttk.Label(self, text="You you have 0 new messages")
+        self.label = ttk.Label(self, text="You have 0 new messages")
         self.label.pack()
-
+        self.button = ttk.Button(self, text="Refresh",
+                                 command= lambda: update(self))
+        self.button.pack()
+        
 def update(frame):
 
     # This is the main function; it retrieves the message count from the api and converts it from JSON to a Python dict.
@@ -94,5 +97,4 @@ def update(frame):
     frame.label.config(text="You have {0} new messages".format(message_count))
 
 app = MessageWatcherApp()
-update(app.frames[StartPage])
 app.mainloop()
