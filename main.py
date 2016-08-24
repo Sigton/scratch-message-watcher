@@ -89,13 +89,12 @@ class StartPage(tk.Frame):
 
         r = requests.get("https://api.scratch.mit.edu/proxy/users/Sigton/activity/count")
         d = json.loads(str(r.content)[2:-1])
-        
         message_count = d['msg_count']
 
-        self.label.config(text="You have %d new messages") % (message_count)
+        self.label.config(text="You have {0} new messages".format(message_count))
 
-        time.wait(5)
-        update()
+        time.sleep(5)
+        self.update()
 
 def main():
     
