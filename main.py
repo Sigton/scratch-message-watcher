@@ -48,13 +48,11 @@ class MessageWatcherApp(tk.Tk):
         # Create a dictionary of frames and append all pages to it
         self.frames = {}
 
-        for f in (StartPage, PageOne):
+        frame = StartPage(container, self)
 
-            frame = f(container, self)
+        self.frames[StartPage] = frame
 
-            self.frames[f] = frame
-
-            frame.grid(row=0, column=0, sticky="nsew")
+        frame.grid(row=0, column=0, sticky="nsew")
 
         # Set the starting page
         self.show_frame(StartPage)
@@ -79,26 +77,11 @@ class StartPage(tk.Frame):
         # Call the parents constructor
         tk.Frame.__init__(self,parent)
 
-        # Added a labal and button
-        label = ttk.Label(self, text="Welcome to the Scratch Message Watcher", font=LARGE_FONT)
-        label.pack(pady=10,padx=10)
-
-class PageOne(tk.Frame):
-
-    '''
-    This is all content on the first page
-    '''
-
-    def __init__(self, parent, controller):
-
-        ''' Constructor '''
-
-        # Call the parents constructor
-        tk.Frame.__init__(self,parent)
-
-        # Add a label and a couple of buttons
-        label = ttk.Label(self, text="Page One", font=LARGE_FONT)
-        label.pack(pady=10,padx=10)
+        # Added a label
+        self.title = ttk.Label(self, text="Welcome to the Scratch Message Watcher", font=LARGE_FONT)
+        self.title.pack(pady=10,padx=10)
+        self.label = ttk.Label(self, text="You you have 0 new messages")
+        self.label.pack()
 
 def update():
 
@@ -108,13 +91,18 @@ def update():
     d = json.loads(str(r.content)[2:-1])
     
     message_count = d['msg_count']
-    print(message_count)
+
+    StartPage.label.config(text="You have %d new messages") % (message_count)
+
+    time.wait(5)
+    update()
 
 def main():
     
     # Main function
     
     app = MessageWatcherApp()
+    update()
     app.mainloop()
 
 if __name__ == '__main__':
